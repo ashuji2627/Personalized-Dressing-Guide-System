@@ -40,8 +40,15 @@ for file in tqdm(filenames):
     feature_list.append(extract_features(file,model))
 
 
-pickle.dump(feature_list,open('embeddings.pkl','wb'))
-pickle.dump(filenames,open('filenames.pkl','wb'))
+
+# Assuming you already have these variables
+joblib.dump(feature_list, "embeddings.joblib")
+joblib.dump(filenames, "filenames.joblib")
+
+
+
+# pickle.dump(feature_list,open('embeddings.pkl','wb'))
+# pickle.dump(filenames,open('filenames.pkl','wb'))
 
 
 print(np.array(feature_list).shape)
