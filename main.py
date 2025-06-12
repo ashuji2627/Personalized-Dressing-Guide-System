@@ -10,8 +10,12 @@ from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 from sklearn.neighbors import NearestNeighbors
 from numpy.linalg import norm
 import base64
+import joblib
 
 # Page configuration
+import joblib
+
+# Assuming you already have these variables
 st.set_page_config(page_title="Personalized Dressing Guide", layout="wide")
 
 # Background image setup
@@ -33,8 +37,12 @@ def set_bg_image(image_path):
 set_bg_image("Background_image.png")  # Replace with your path if different
 
 # Load features and model
-feature_list = np.array(pickle.load(open('embeddings.pkl', 'rb')))
-filenames = pickle.load(open('filenames.pkl', 'rb'))
+
+feature_list = np.array(joblib.load(open('embeddings.joblib', 'rb')))
+filenames = joblib.load(open('filenames.joblib', 'rb'))
+
+# feature_list = np.array(pickle.load(open('embeddings.pkl', 'rb')))
+# filenames = pickle.load(open('filenames.pkl', 'rb'))
 
 resnet = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
 resnet.trainable = False
