@@ -7,7 +7,7 @@ from numpy.linalg import norm
 import os
 from tqdm import tqdm
 import pickle
-import joblib
+# import joblib
 
 model = ResNet50(weights='imagenet',include_top=False,input_shape=(224,224,3))
 model.trainable = False
@@ -43,13 +43,13 @@ for file in tqdm(filenames):
 
 
 # Assuming you already have these variables
-joblib.dump(feature_list, "embeddings.joblib")
-joblib.dump(filenames, "filenames.joblib")
+# joblib.dump(feature_list, "embeddings.joblib")
+# joblib.dump(filenames, "filenames.joblib")
 
 
 
-# pickle.dump(feature_list,open('embeddings.pkl','wb'))
-# pickle.dump(filenames,open('filenames.pkl','wb'))
+pickle.dump(feature_list,open('embeddings.pkl','wb'))
+pickle.dump(filenames,open('filenames.pkl','wb'))
 
 
 print(np.array(feature_list).shape)
