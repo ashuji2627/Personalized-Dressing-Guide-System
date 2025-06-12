@@ -41,8 +41,14 @@ set_bg_image("Background_image.png")  # Replace with your path if different
 # feature_list = np.array(joblib.load(open('embeddings.joblib', 'rb')))
 # filenames = joblib.load(open('filenames.joblib', 'rb'))
 
-feature_list = np.array(pickle.load(open('embeddings.pkl', 'rb')))
-filenames = pickle.load(open('filenames.pkl', 'rb'))
+# with open("embeddings.pkl", "wb") as f:
+#     pickle.dump(feature_list, f)
+
+# with open("filenames.pkl", "wb") as f:
+#     pickle.dump(filenames, f)
+
+feature_list = np.array(pickle.load(open('embeddings.pkl', 'wb')))
+filenames = pickle.load(open('filenames.pkl', 'wb'))
 
 resnet = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
 resnet.trainable = False
